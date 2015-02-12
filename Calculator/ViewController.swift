@@ -54,6 +54,7 @@ class ViewController: UIViewController {
     @IBAction func clear() {
         calculatorStack = []
         displayValue = 0
+        historyStack.text = "History"
     }
     
     @IBAction func operand(sender: UIButton) {
@@ -63,6 +64,8 @@ class ViewController: UIViewController {
             enter()
         }
         
+        historyStack.text = historyStack.text! + " \(operation)"
+
         switch operation {
         case "✕": performCalculation({ (opt1, opt2) -> Double in
             return opt1*opt2
@@ -76,7 +79,6 @@ class ViewController: UIViewController {
         default:
             break
         }
-        historyStack.text = historyStack.text! + " \(operation)"
     }
     
     func performCalculation(calc: (opt1:Double, opt2: Double) -> Double) {
@@ -85,6 +87,7 @@ class ViewController: UIViewController {
             let digit2 = calculatorStack.removeLast()
             let result = calc(opt1: digit1, opt2: digit2)
             displayValue = result
+            historyStack.text = historyStack.text! + " ="
             enter()
         }
     }
@@ -92,6 +95,7 @@ class ViewController: UIViewController {
     func performCalculation(calc: (opt: Double) -> Double) {
         if calculatorStack.count >= 1 {
             displayValue = calc(opt: calculatorStack.removeLast())
+            historyStack.text = historyStack.text! + " ="
             enter()
         }
     }
