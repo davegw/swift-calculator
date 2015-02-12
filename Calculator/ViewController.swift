@@ -19,6 +19,10 @@ class ViewController: UIViewController {
         let digit = sender.currentTitle!
         println("Digit entered: \(digit)")
         
+        if digit == "." && displayValue % 1 != 0 {
+            return
+        }
+        
         if userIsTypingInitialValue {
             display.text = digit
             userIsTypingInitialValue = false
