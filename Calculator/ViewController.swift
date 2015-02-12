@@ -58,6 +58,8 @@ class ViewController: UIViewController {
         case "+": performCalculation({ (opt1, opt2) in opt1 + opt2})
         case "﹣": performCalculation({ (opt1, opt2) in return opt2 - opt1 })
         case "√": performCalculation() { sqrt($0) }
+        case "sin": performCalculation() { sin($0) }
+        case "cos": performCalculation() { cos($0) }
         default:
             break
         }
