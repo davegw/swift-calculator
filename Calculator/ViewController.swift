@@ -43,6 +43,11 @@ class ViewController: UIViewController {
         println("calculatorStack: \(calculatorStack)")
     }
     
+    @IBAction func clear() {
+        calculatorStack = []
+        displayValue = 0
+    }
+    
     @IBAction func operand(sender: UIButton) {
         let operation = sender.currentTitle!
         
