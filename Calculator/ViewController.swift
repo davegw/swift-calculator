@@ -15,6 +15,8 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var display: UILabel!
 
+    @IBOutlet weak var historyStack: UILabel!
+
     @IBAction func appendDigit(sender: UIButton) {
         let digit = sender.currentTitle!
         println("Digit entered: \(digit)")
@@ -39,6 +41,12 @@ class ViewController: UIViewController {
 
     @IBAction func enter() {
         calculatorStack.append(displayValue)
+        
+        if historyStack.text! == "History" {
+            historyStack.text = ""
+        }
+        
+        historyStack.text = historyStack.text! + " \(displayValue)"
         userIsTypingInitialValue = true
         println("calculatorStack: \(calculatorStack)")
     }
@@ -68,6 +76,7 @@ class ViewController: UIViewController {
         default:
             break
         }
+        historyStack.text = historyStack.text! + " \(operation)"
     }
     
     func performCalculation(calc: (opt1:Double, opt2: Double) -> Double) {
