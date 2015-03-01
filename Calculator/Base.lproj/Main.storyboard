@@ -235,6 +235,9 @@
                                 <state key="normal" title="+/-">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="plusMinus" destination="BYZ-38-t0r" eventType="touchUpInside" id="XKD-Ht-MgU"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yLN-3Q-Zga">
                                 <rect key="frame" x="491" y="319" width="85" height="113"/>

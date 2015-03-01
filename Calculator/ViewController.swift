@@ -60,6 +60,11 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func plusMinus() {
+        displayValue *= -1
+        userIsTypingInitialValue = false
+    }
+
     @IBAction func operand(sender: UIButton) {
         if !userIsTypingInitialValue {
             enter()
