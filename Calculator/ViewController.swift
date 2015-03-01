@@ -41,31 +41,30 @@ class ViewController: UIViewController {
     }
 
     @IBAction func enter() {
-        calculatorStack.append(displayValue)
-        
-        if historyStack.text! == "History" {
-            historyStack.text = ""
-        }
-        
-        historyStack.text = historyStack.text! + " \(displayValue)"
         userIsTypingInitialValue = true
-        println("calculatorStack: \(calculatorStack)")
+        if let result = brain.pushOperand(displayValue) {
+            displayValue = result
+        } else {
+            // displayValue should be an optional with a default return value
+            displayValue = 0
+        }
     }
     
     @IBAction func clear() {
-        calculatorStack = []
         displayValue = 0
-        historyStack.text = "History"
     }
     
     @IBAction func operand(sender: UIButton) {
-        let operation = sender.currentTitle!
-        
         if !userIsTypingInitialValue {
             enter()
         }
-        
-        historyStack.text = historyStack.text! + " \(operation)"
+        if let operation = sender.currentTitle {
+            if let result = brain.performOperation(operation) {
+                displayValue = result
+            } else {
+                displayValue = 0
+            }
+        }
     }
     
     // Everytime displayValue is called it gets the display value, unwraps the optional and set it to a Double type.
