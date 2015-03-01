@@ -86,4 +86,8 @@ class CalculatorBrain {
         return evaluate()
     }
     
+    func clearStack() {
+        opStack = []
+    }
+    
 }

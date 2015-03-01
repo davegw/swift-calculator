@@ -19,22 +19,22 @@ class ViewController: UIViewController {
     @IBOutlet weak var historyStack: UILabel!
 
     @IBAction func appendDigit(sender: UIButton) {
-        let digit = sender.currentTitle!
-        
-        if digit == "." && displayValue % 1 != 0 {
-            return
-        }
-        
-        if digit == "π" {
-            display.text = "\(M_PI)"
-            return enter()
-        }
-        
-        if userIsTypingInitialValue {
-            display.text = digit
-            userIsTypingInitialValue = false
-        } else {
-            display.text = display.text! + digit
+        if let digit = sender.currentTitle {
+            if digit == "." && displayValue % 1 != 0 {
+                return
+            }
+            
+            if digit == "π" {
+                display.text = "\(M_PI)"
+                return enter()
+            }
+            
+            if userIsTypingInitialValue {
+                display.text = digit
+                userIsTypingInitialValue = false
+            } else {
+                display.text = display.text! + digit
+            }
         }
     }
 
@@ -49,7 +49,15 @@ class ViewController: UIViewController {
     }
     
     @IBAction func clear() {
+        brain.clearStack()
         displayValue = 0
+    }
+    
+    @IBAction func backspace() {
+        if let currentDisplay = display.text {
+            let newDisplay = dropLast(currentDisplay)
+            display.text = countElements(newDisplay) > 0 ? newDisplay : "0"
+        }
     }
     
     @IBAction func operand(sender: UIButton) {
