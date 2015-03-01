@@ -20,13 +20,11 @@ class ViewController: UIViewController {
 
     @IBAction func appendDigit(sender: UIButton) {
         let digit = sender.currentTitle!
-        println("Digit entered: \(digit)")
         
         if digit == "." && displayValue % 1 != 0 {
             return
         }
         
-        println(digit)
         if digit == "π" {
             display.text = "\(M_PI)"
             return enter()

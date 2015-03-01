@@ -9,8 +9,21 @@
 import Foundation
 
 class CalculatorBrain {
-    enum Op {
+    private enum Op: Printable {
         case operand(Double), unaryOperator(String, Double -> Double), binaryOperator(String, (Double, Double)-> Double)
+        
+        var description: String {
+            get {
+                switch self {
+                case .operand(let operand):
+                    return "\(operand)"
+                case .unaryOperator(let symbol, _):
+                    return symbol
+                case .binaryOperator(let symbol, _):
+                    return symbol
+                }
+            }
+        }
     }
     
     private var opStack = [Op]()
@@ -27,7 +40,7 @@ class CalculatorBrain {
         knownOps["cos"] = Op.unaryOperator("cos") { cos($0) }
     }
     
-    func evaluate(ops: [Op]) -> (result: Double?, remainingOps: [Op]) {
+    private func evaluate(ops: [Op]) -> (result: Double?, remainingOps: [Op]) {
         if !ops.isEmpty {
             var remainingOps = ops
             let op = remainingOps.removeLast()
@@ -56,7 +69,8 @@ class CalculatorBrain {
     }
     
     func evaluate() -> Double? {
-        let (result, remainingStack) = evaluate(opStack)
+        let (result, remainder) = evaluate(opStack)
+        println("\(opStack) = \(result) with \(remainder) left over")
         return result
     }
     
