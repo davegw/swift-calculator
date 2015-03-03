@@ -10,7 +10,10 @@ import Foundation
 
 class CalculatorBrain {
     private enum Op: Printable {
-        case operand(Double), unaryOperator(String, Double -> Double), binaryOperator(String, (Double, Double)-> Double)
+        case operand(Double)
+        case unaryOperator(String, Double -> Double)
+        case binaryOperator(String, (Double, Double)-> Double)
+        case variable(String)
         
         var description: String {
             get {
@@ -20,6 +23,8 @@ class CalculatorBrain {
                 case .unaryOperator(let symbol, _):
                     return symbol
                 case .binaryOperator(let symbol, _):
+                    return symbol
+                case .variable(let symbol):
                     return symbol
                 }
             }
@@ -61,6 +66,10 @@ class CalculatorBrain {
                         return (operation(operand1, operand2), op2Evaluation.remainingOps)
                     }
                 }
+            case .variable(let symbol):
+                if let symbolVariable = variableValues[symbol] {
+                    return (symbolVariable, remainingOps)
+                }
             }
         
         }
@@ -81,6 +90,13 @@ class CalculatorBrain {
         }
         return nil
     }
+    
+    func pushOperand(symbol: String) -> Double? {
+        opStack.append(Op.variable(symbol))
+        return evaluate()
+    }
+    
+    var variableValues: [String: Double] = ["x": 30]
     
     func performOperation(symbol: String) -> Double? {
         if let operation = knownOps[symbol] {

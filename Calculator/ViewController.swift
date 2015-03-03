@@ -93,7 +93,7 @@ class ViewController: UIViewController {
             if let displayOptional = newValue {
                 display.text = "\(displayOptional)"
             } else {
-                display.text = "err"
+                display.text = nil
             }
             userIsTypingInitialValue = true
         }
