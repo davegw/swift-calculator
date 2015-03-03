@@ -74,9 +74,12 @@ class CalculatorBrain {
         return result
     }
     
-    func pushOperand(operand: Double) -> Double? {
-        opStack.append(Op.operand(operand))
-        return evaluate()
+    func pushOperand(operand: Double?) -> Double? {
+        if let operandOptional = operand {
+            opStack.append(Op.operand(operandOptional))
+            return evaluate()
+        }
+        return nil
     }
     
     func performOperation(symbol: String) -> Double? {

@@ -20,7 +20,7 @@ class ViewController: UIViewController {
 
     @IBAction func appendDigit(sender: UIButton) {
         if let digit = sender.currentTitle {
-            if digit == "." && displayValue % 1 != 0 {
+            if digit == "." && displayValue != nil && displayValue! % 1 != 0 {
                 return
             }
             
@@ -44,7 +44,7 @@ class ViewController: UIViewController {
             displayValue = result
         } else {
             // displayValue should be an optional with a default return value
-            displayValue = 0
+            displayValue = nil
         }
     }
     
@@ -61,7 +61,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func plusMinus() {
-        displayValue *= -1
+        if displayValue != nil {
+            displayValue! *= -1
+        }
         userIsTypingInitialValue = false
     }
 
@@ -73,19 +75,26 @@ class ViewController: UIViewController {
             if let result = brain.performOperation(operation) {
                 displayValue = result
             } else {
-                displayValue = 0
+                displayValue = nil
             }
         }
     }
     
     // Everytime displayValue is called it gets the display value, unwraps the optional and set it to a Double type.
     // When set, displayValue stores its set value as a string in display.
-    var displayValue: Double {
+    var displayValue: Double? {
         get {
-            return NSNumberFormatter().numberFromString(display.text!)!.doubleValue
+            if let validDouble = NSNumberFormatter().numberFromString(display.text!)?.doubleValue {
+                return validDouble
+            }
+            return nil
         }
         set {
-            display.text = "\(newValue)"
+            if let displayOptional = newValue {
+                display.text = "\(displayOptional)"
+            } else {
+                display.text = "err"
+            }
             userIsTypingInitialValue = true
         }
     }
