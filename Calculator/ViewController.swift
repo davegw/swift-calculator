@@ -80,6 +80,12 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func variable() {
+        if let variableDisplay = brain.pushOperand("x") {
+            displayValue = variableDisplay
+        }
+    }
+    
     // Everytime displayValue is called it gets the display value, unwraps the optional and set it to a Double type.
     // When set, displayValue stores its set value as a string in display.
     var displayValue: Double? {
@@ -93,7 +99,7 @@ class ViewController: UIViewController {
             if let displayOptional = newValue {
                 display.text = "\(displayOptional)"
             } else {
-                display.text = nil
+                display.text = "err"
             }
             userIsTypingInitialValue = true
         }

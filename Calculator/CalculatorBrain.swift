@@ -35,6 +35,10 @@ class CalculatorBrain {
     
     private var knownOps = [String:Op]()
     
+    private var variableValues: [String: Double] = [
+        "x": 30
+    ]
+    
     init() {
         knownOps["✕"] = Op.binaryOperator("✕") { $0 * $1 }
         knownOps["÷"] = Op.binaryOperator("÷") { $1 / $0 }
@@ -96,13 +100,12 @@ class CalculatorBrain {
         return evaluate()
     }
     
-    var variableValues: [String: Double] = ["x": 30]
-    
     func performOperation(symbol: String) -> Double? {
         if let operation = knownOps[symbol] {
             opStack.append(operation)
+            return evaluate()
         }
-        return evaluate()
+        return nil
     }
     
     func clearStack() {
