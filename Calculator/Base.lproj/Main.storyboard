@@ -252,38 +252,44 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h4f-pU-u4s">
                                 <rect key="frame" x="424" y="440" width="72" height="114"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal">
+                                <state key="normal" title="M">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g8f-7f-pVn">
                                 <rect key="frame" x="504" y="75" width="72" height="114"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="var">
+                                <state key="normal" title="x">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="variable" destination="BYZ-38-t0r" eventType="touchUpInside" id="z96-ml-0fW"/>
+                                    <action selector="variable:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uM9-sl-etC"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="McK-hQ-Ykq">
                                 <rect key="frame" x="504" y="197" width="72" height="114"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="M">
+                                <state key="normal" title="y">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="variable:" destination="BYZ-38-t0r" eventType="touchUpInside" id="B0i-qh-3fl"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VUz-U3-eRd">
                                 <rect key="frame" x="504" y="319" width="72" height="114"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="M+">
+                                <state key="normal" title="z">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="variable:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jua-6Q-rPt"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QoA-kf-2oG">
                                 <rect key="frame" x="504" y="440" width="72" height="114"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal">
+                                <state key="normal" title="M+">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>

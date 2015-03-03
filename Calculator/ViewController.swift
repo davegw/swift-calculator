@@ -80,9 +80,11 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func variable() {
-        if let variableDisplay = brain.pushOperand("x") {
-            displayValue = variableDisplay
+    @IBAction func variable(sender: UIButton) {
+        if let symbol = sender.currentTitle {
+            if let variableDisplay = brain.pushOperand(symbol) {
+                displayValue = variableDisplay
+            }
         }
     }
     

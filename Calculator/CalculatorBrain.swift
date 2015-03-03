@@ -36,7 +36,9 @@ class CalculatorBrain {
     private var knownOps = [String:Op]()
     
     private var variableValues: [String: Double] = [
-        "x": 30
+        "x": 30,
+        "y": 100,
+        "z": 1000
     ]
     
     init() {
