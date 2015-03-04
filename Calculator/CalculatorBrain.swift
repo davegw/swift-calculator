@@ -14,6 +14,7 @@ class CalculatorBrain {
         case unaryOperator(String, Double -> Double)
         case binaryOperator(String, (Double, Double)-> Double)
         case variable(String)
+        case constant(String)
         
         var description: String {
             get {
@@ -26,6 +27,8 @@ class CalculatorBrain {
                     return symbol
                 case .variable(let symbol):
                     return symbol
+                case .constant(let const):
+                    return const
                 }
             }
         }
@@ -34,6 +37,10 @@ class CalculatorBrain {
     private var opStack = [Op]()
     
     private var knownOps = [String:Op]()
+    
+    private var knownConstants: [String: Double] = [
+        "π": M_PI
+    ]
     
     private var variableValues: [String: Double] = [
         "x": 30,
@@ -59,6 +66,8 @@ class CalculatorBrain {
                 return ("\(operand)", currentOpStack)
             case .variable(let symbol):
                 return (symbol, currentOpStack)
+            case .constant(let constant):
+                return (constant, currentOpStack)
             case .unaryOperator(let symbol, _):
                 let opEvaluate = description(currentOpStack)
                 if let operandDescription = opEvaluate.result {
@@ -111,11 +120,14 @@ class CalculatorBrain {
                     }
                 }
             case .variable(let symbol):
-                if let symbolVariable = variableValues[symbol] {
-                    return (symbolVariable, remainingOps)
+                if let symbolValue = variableValues[symbol] {
+                    return (symbolValue, remainingOps)
+                }
+            case .constant(let constant):
+                if let constantValue = knownConstants[constant] {
+                    return (constantValue, remainingOps)
                 }
             }
-        
         }
         
         return (nil, ops)
@@ -136,7 +148,16 @@ class CalculatorBrain {
     }
     
     func pushOperand(symbol: String) -> Double? {
-        opStack.append(Op.variable(symbol))
+        if knownConstants[symbol] != nil {
+            opStack.append(Op.constant(symbol))
+        } else {
+            opStack.append(Op.variable(symbol))
+        }
+        return evaluate()
+    }
+    
+    func pushConstant(constant: String) -> Double? {
+        opStack.append(Op.constant(constant))
         return evaluate()
     }
     

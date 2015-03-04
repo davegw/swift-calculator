@@ -24,11 +24,6 @@ class ViewController: UIViewController {
                 return
             }
             
-            if digit == "π" {
-                display.text = "\(M_PI)"
-                return enter()
-            }
-            
             if userIsTypingInitialValue {
                 display.text = digit
                 userIsTypingInitialValue = false
