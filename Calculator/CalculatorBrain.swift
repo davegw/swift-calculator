@@ -81,11 +81,9 @@ class CalculatorBrain {
                         return ("\(op2Description)\(symbol)\(op1Description)", op2Evaluate.remainingOps)
                     }
                 }
-                
-            default: return ("yolo", currentOpStack)
             }
         }
-        return (nil, ops)
+        return ("?", ops)
     }
     
     init() {
@@ -136,6 +134,7 @@ class CalculatorBrain {
     func evaluate() -> Double? {
         let (result, remainder) = evaluate(opStack)
         println("\(opStack) = \(result) with \(remainder) left over")
+        println(description)
         return result
     }
     
