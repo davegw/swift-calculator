@@ -77,7 +77,11 @@ class ViewController: UIViewController {
     
     @IBAction func variable(sender: UIButton) {
         if let symbol = sender.currentTitle {
-            if let variableDisplay = brain.pushOperand(symbol) {
+            if !userIsTypingInitialValue {
+                brain.variableValues[symbol] = displayValue
+                userIsTypingInitialValue = true
+            }
+            else if let variableDisplay = brain.pushOperand(symbol) {
                 displayValue = variableDisplay
             }
         }

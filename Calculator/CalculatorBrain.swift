@@ -42,11 +42,7 @@ class CalculatorBrain {
         "π": M_PI
     ]
     
-    private var variableValues: [String: Double] = [
-        "x": 30,
-        "y": 100,
-        "z": 1000
-    ]
+    var variableValues = [String: Double]()
     
     var description: String {
         get {
@@ -152,11 +148,6 @@ class CalculatorBrain {
         } else {
             opStack.append(Op.variable(symbol))
         }
-        return evaluate()
-    }
-    
-    func pushConstant(constant: String) -> Double? {
-        opStack.append(Op.constant(constant))
         return evaluate()
     }
     
