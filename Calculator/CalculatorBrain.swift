@@ -161,6 +161,7 @@ class CalculatorBrain {
     
     func clearStack() {
         opStack = []
+        variableValues.removeAll()
     }
     
 }
