@@ -95,6 +95,7 @@ class ViewController: UIViewController {
         set {
             if let displayOptional = newValue {
                 display.text = "\(displayOptional)"
+                historyStack.text = "\(brain.description) ="
             } else {
                 display.text = "err"
             }
