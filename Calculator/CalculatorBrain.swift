@@ -41,6 +41,43 @@ class CalculatorBrain {
         "z": 1000
     ]
     
+    var description: String {
+        get {
+            if let opDescription = description(opStack).result {
+                return opDescription
+            }
+            return "Error"
+        }
+    }
+    
+    private func description(ops: [Op]) -> (result: String?, remainingOps: [Op]) {
+        if !ops.isEmpty {
+            var currentOpStack = ops
+            let op = currentOpStack.removeLast()
+            switch op {
+            case .operand(let operand):
+                return ("\(operand)", currentOpStack)
+            case .variable(let symbol):
+                return (symbol, currentOpStack)
+            case .unaryOperator(let symbol, _):
+                if let operandDescription = description(currentOpStack).result {
+                    return ("\(symbol)(\(operandDescription))", currentOpStack)
+                }
+            case .binaryOperator(let symbol, _):
+                let op1Evaluate = description(currentOpStack)
+                if let op1Description = op1Evaluate.result {
+                    let op2Evaluate = description(op1Evaluate.remainingOps)
+                    if let op2Description = op2Evaluate.result {
+                        return ("\(op2Description)\(symbol)\(op1Description)", op2Evaluate.remainingOps)
+                    }
+                }
+                
+            default: return ("yolo", currentOpStack)
+            }
+        }
+        return (nil, ops)
+    }
+    
     init() {
         knownOps["✕"] = Op.binaryOperator("✕") { $0 * $1 }
         knownOps["÷"] = Op.binaryOperator("÷") { $1 / $0 }
