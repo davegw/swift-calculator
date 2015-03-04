@@ -60,8 +60,9 @@ class CalculatorBrain {
             case .variable(let symbol):
                 return (symbol, currentOpStack)
             case .unaryOperator(let symbol, _):
-                if let operandDescription = description(currentOpStack).result {
-                    return ("\(symbol)(\(operandDescription))", currentOpStack)
+                let opEvaluate = description(currentOpStack)
+                if let operandDescription = opEvaluate.result {
+                    return ("\(symbol)(\(operandDescription))", opEvaluate.remainingOps)
                 }
             case .binaryOperator(let symbol, _):
                 let op1Evaluate = description(currentOpStack)
