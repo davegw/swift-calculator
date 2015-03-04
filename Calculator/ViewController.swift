@@ -45,7 +45,7 @@ class ViewController: UIViewController {
     
     @IBAction func clear() {
         brain.clearStack()
-        displayValue = 0
+        displayValue = nil
     }
     
     @IBAction func backspace() {
@@ -97,7 +97,7 @@ class ViewController: UIViewController {
                 display.text = "\(displayOptional)"
                 historyStack.text = "\(brain.description) ="
             } else {
-                display.text = "err"
+                display.text = " "
             }
             userIsTypingInitialValue = true
         }
