@@ -87,6 +87,18 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func memoryGet() {
+        displayValue = brain.pushOperand("M")
+    }
+    
+    @IBAction func memorySet() {
+        if let displayOptional = displayValue {
+            brain.variableValues["M"] = displayOptional
+            userIsTypingInitialValue = true
+        }
+        displayValue = brain.evaluate()
+    }
+    
     // Everytime displayValue is called it gets the display value, unwraps the optional and set it to a Double type.
     // When set, displayValue stores its set value as a string in display.
     var displayValue: Double? {
